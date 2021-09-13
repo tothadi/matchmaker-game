@@ -31,8 +31,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {
@@ -74,6 +73,10 @@
           "configurations": {
             "production": {
               "browserTarget": "memory-game:build:production"
+            },
+            "development": {
+              "browserTarget": "guesthouse-admin:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },
@@ -98,8 +101,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              
+              "node_modules/jquery/dist/jquery.min.js"              
             ]
           }
         },

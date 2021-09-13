@@ -7,10 +7,7 @@
 // require('./api/config/config'); *** Only needed if you want to use credential values
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var cors = require('cors');
 // [SH] Require Passport
 var passport = require('passport');
@@ -26,17 +23,10 @@ var routesApi = require('./api/routes/index');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
-
-app.use(favicon(__dirname + '/client/favicon.ico'));
 
 // [SH] Initialise Passport before using the route middleware
 app.use(passport.initialize());

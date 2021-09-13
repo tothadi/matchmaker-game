@@ -1,3 +1,23 @@
+const Mongoose = require('mongoose');
+const dbURI = process.env.MONGODB_URI;
+const options = {
+  //useCreateIndex: true,
+  useNewUrlParser: true,
+  //useFindAndModify: false,
+  useUnifiedTopology: true,
+  keepAlive: true,
+};
+
+async function main() {
+  try {
+    const db = await Mongoose.connect(dbURI, options);
+    console.log('DB server connect');
+  } catch (err) {
+    console.error(err.message);
+  }
+}
+main().catch(console.dir);
+/*
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var gracefulShutdown;
@@ -63,6 +83,6 @@ process.on('SIGTERM', function () {
   });
 });
 
-// BRING IN YOUR SCHEMAS & MODELS
+// BRING IN YOUR SCHEMAS & MODELS*/
 require('./users');
 require('./results')
