@@ -1,0 +1,36 @@
+#cookies {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    background-color: rgba(0, 0, 0, .7);
+}
+
+#cookie {
+    width: 50%;
+    text-align: justify;
+    font-size: 2vh;
+    margin-bottom: 6vh;
+    color: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+    color: goldenrod;
+}
+
+button {
+    width: 200px;
+    height: 40px;
+    font-size: 25px;
+    border-radius: 5px;
+    background-color: goldenrod;
+    border: none;
+    box-shadow: 5px 5px 5px rgba(218, 165, 32, .5);
+}

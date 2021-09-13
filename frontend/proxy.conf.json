@@ -1,0 +1,9 @@
+{
+    "/api/*": {
+        "target": "https://matchmakergame.herokuapp.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+        
+    }
+}

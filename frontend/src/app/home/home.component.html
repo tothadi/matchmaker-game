@@ -1,0 +1,114 @@
+<div id="container">
+
+  <h1>Welcome!</h1>
+
+  <img src="assets/image/logo.gif" alt="logo">
+
+  <p class="lead">This is a simple matchmaker game to train your memory.<br>If you would like to try it just click on
+    any of the cards below to start the timer.</p>
+
+  <div id="demo">
+    <div id="pictures" [ngClass]="{
+      'blur': gameEnded
+  }">
+      <img draggable="false" class="cards" [ngClass]="{
+          'blur': gameEnded
+      }" *ngFor="let picture of pictures" src="assets/image/{{theme}}/{{picture}}.jpg" alt="{{theme}} {{picture}}"
+        (click)="showPic($event)">
+    </div>
+    <div *ngIf="!gameEnded" [ngClass]="{'started': gameEnded || !firstClick}" class="timer">
+      {{hours}}:{{minutes}}:{{seconds}}.{{milliseconds}}</div>
+
+    <div *ngIf="gameEnded && !regError" id="screen">
+      <dialog id="result">
+        <p>You solved the game in <span>{{time}}</span>!</p>
+        <p>That's <span>{{points}}</span> points!</p>
+      </dialog>
+      <p id="wannaReg" class="lead">If you would like to save this result, please register with the form below.</p>
+      <form (submit)="register()">
+
+        <div class="form-group">
+          <label for="fullname">Full name</label>
+          <input type="text" class="form-control" name="fullname" placeholder="Enter your name" required minlength="3"
+            [(ngModel)]="credentials.fullname" #fullnameInput="ngModel">
+          <div class="help error" *ngIf="fullnameInput.invalid && fullnameInput.dirty">
+            Full name must be at least 3 characters long!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter your desired username" required
+            minlength="3" [(ngModel)]="credentials.username" #usernameInput="ngModel">
+          <div class="help error" *ngIf="usernameInput.invalid && usernameInput.dirty">
+            Full name must be at least 3 characters long!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter your email address" required email
+            [(ngModel)]="credentials.email" #emailInput="ngModel">
+          <div class="help error" *ngIf="emailInput.invalid && emailInput.dirty">
+            Please provide a real email address!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password" required minlength="8"
+            [(ngModel)]="credentials.password" #passwordInput="ngModel">
+          <div class="help error" *ngIf="passwordInput.invalid && passwordInput.dirty">
+            The password must be at least 8 characters long.
+          </div>
+        </div>
+
+        <button id="reg" type="submit" class="btn btn-default"
+          [disabled]="fullnameInput.invalid || usernameInput.invalid || emailInput.invalid || passwordInput.invalid">Register!</button>
+
+      </form>
+
+      <button (click)="closeDemo()" id="close" class="btn btn-default">Close</button>
+    </div>
+
+    <div *ngIf="regError" id="errorScreen">
+      <dialog id="errorDialog" open>{{errorMessage}}</dialog>
+      <button (click)="closeError()" id="close" class="btn btn-default">Try again</button>
+    </div>
+  </div>
+
+  <p class="lead">Please <a routerLink="/login">sign in</a> or <a routerLink="/register">register</a> if you would like
+    to save, track and compare your results.</p>
+  <h2>Hall of fame</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>rank</td>
+        <td>name</td>
+        <td>points</td>
+        <td>level</td>
+        <td>time</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let firstTen of firstTens; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{firstTen?.username}}</td>
+        <td>{{firstTen?.points}}</td>
+        <td>{{firstTen?.level}}</td>
+        <td>{{firstTen?.time | date:'mm:ss:SS'}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Author details</h3>
+  <h4>Name</h4>
+  <p>Ádám Tóth</p>
+  <h4>Location</h4>
+  <p>Hungary</p>
+  <h4>Web</h4>
+  <p><a href="https://www.tothadi.hu" target="blank"><i aria-hidden="true" class="fa fa-address-card icons"></i></a>
+  </p>
+  <h4>Source of pictures</h4>
+  <a href="https://freeimages.com" target="blank">freeimages.com</a>
+  <a href="https://imdb.com" target="blank">imdb.com</a>
+</div>
