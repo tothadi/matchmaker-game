@@ -4,7 +4,7 @@ An idea for practicing MEAN stack. Just a simple memory game with several pictur
 
 ## Stack
 
-Node, Express,Express-jwt, Passport, Mongoose, Angular
+Node, Express, Express-jwt, Passport, Mongoose, Angular
 
 ## Hosting
 
