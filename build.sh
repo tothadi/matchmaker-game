@@ -4,6 +4,7 @@ npm run build:app
 cd ..
 
 cd backend
+mkdir client
 
 npm i
 
